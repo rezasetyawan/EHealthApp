@@ -9,10 +9,10 @@ Public Class MainWindow
     Private Const JAM_TUTUP As Integer = 16
 
     Private Enum KategoriIMT
-        Underweight
+        KekuranganBeratBadan
         Normal
-        Overweight
-        Obese
+        KelebihanBeratBadan
+        Obesitas
     End Enum
 
     Private Enum JenisKonsultasi
@@ -29,7 +29,7 @@ Public Class MainWindow
     End Sub
 
     Private Sub menuTentang_Click(sender As Object, e As RoutedEventArgs)
-        MessageBox.Show("Aplikasi E-Health" & vbCrLf & "Versi 1.0" & vbCrLf & "© 2024 Tim Pengembang", "Tentang Aplikasi", MessageBoxButton.OK, MessageBoxImage.Information)
+        MessageBox.Show("Aplikasi E-Health" & System.Environment.NewLine & "Versi 1.0" & System.Environment.NewLine & "© 2024 Tim Pengembang", "Tentang Aplikasi", MessageBoxButton.OK, MessageBoxImage.Information)
     End Sub
 
     ' ======= Logika IMT =======
@@ -39,11 +39,33 @@ Public Class MainWindow
             Dim tinggi As Double = Double.Parse(txtTinggiBadan.Text)
 
             Dim imt As Double = HitungIMT(berat, tinggi)
-            Dim kategori As KategoriIMT = TentukanKategoriIMT(imt)
+            Dim kategori As String = TentukanKategoriIMT(imt)
 
-            txtHasilIMT.Text = $"IMT Anda: {imt:F2}" & vbNewLine & $"Kategori: {kategori}"
+            ' Hitung berat badan ideal dengan IMT 22
+            Dim beratIdeal As Double = HitungBeratIdeal(tinggi, 22) ' Menggunakan IMT 22 sebagai nilai normal
+
+            ' Menampilkan hasil IMT
+            txtHasilIMT.Text = $"IMT Anda: {imt:F2}" & System.Environment.NewLine &
+                           $"Kategori: {kategori}" & System.Environment.NewLine &
+                           $"Berat Badan Ideal Anda: {beratIdeal:F2} kg" & System.Environment.NewLine &
+                           $"Saran: {TentukanSaranIMT(kategori)}"
         End If
     End Sub
+
+    Private Function TentukanSaranIMT(kategori As String) As String
+        Select Case kategori
+            Case KategoriIMT.KekuranganBeratBadan.ToString()
+                Return "Perbaiki asupan gizi Anda dan pertimbangkan untuk meningkatkan konsumsi makanan bergizi."
+            Case KategoriIMT.KelebihanBeratBadan.ToString()
+                Return "Mulailah berolahraga secara teratur dan perhatikan pola makan sehat untuk menurunkan berat badan."
+            Case Else
+                Return "Jaga pola makan sehat dan gaya hidup aktif."
+        End Select
+    End Function
+
+    Private Function HitungBeratIdeal(tinggi As Double, imtNormal As Double) As Double
+        Return imtNormal * ((tinggi / 100) * (tinggi / 100))
+    End Function
 
     Private Sub btnResetIMT_Click(sender As Object, e As RoutedEventArgs)
         txtNama.Clear()
@@ -59,11 +81,11 @@ Public Class MainWindow
         Return berat / ((tinggi / 100) * (tinggi / 100))
     End Function
 
-    Private Function TentukanKategoriIMT(imt As Double) As KategoriIMT
-        If imt < IMT_NORMAL_MIN Then Return KategoriIMT.Underweight
-        If imt <= IMT_NORMAL_MAX Then Return KategoriIMT.Normal
-        If imt < 30 Then Return KategoriIMT.Overweight
-        Return KategoriIMT.Obese
+    Private Function TentukanKategoriIMT(imt As Double) As String
+        If imt < IMT_NORMAL_MIN Then Return KategoriIMT.KekuranganBeratBadan.ToString()
+        If imt <= IMT_NORMAL_MAX Then Return KategoriIMT.Normal.ToString()
+        If imt < 30 Then Return KategoriIMT.KelebihanBeratBadan.ToString()
+        Return KategoriIMT.Obesitas.ToString()
     End Function
 
     Private Function ValidasiInputIMT() As Boolean
@@ -83,10 +105,10 @@ Public Class MainWindow
             Dim menit As Integer = Integer.Parse(cmbMenit.SelectedItem.Content)
             Dim jenis As JenisKonsultasi = CType(cmbJenisKonsultasi.SelectedIndex, JenisKonsultasi)
 
-            txtHasilKonsultasi.Text = $"Nama: {txtNamaPasien.Text}" & vbNewLine &
-                                      $"Telepon: {txtNoTelepon.Text}" & vbNewLine &
-                                      $"Jenis Konsultasi: {jenis}" & vbNewLine &
-                                      $"Tanggal: {dpTanggalKonsultasi.SelectedDate.Value.ToShortDateString()}" & vbNewLine &
+            txtHasilKonsultasi.Text = $"Nama: {txtNamaPasien.Text}" & System.Environment.NewLine &
+                                      $"Telepon: {txtNoTelepon.Text}" & System.Environment.NewLine &
+                                      $"Jenis Konsultasi: {jenis}" & System.Environment.NewLine &
+                                      $"Tanggal: {dpTanggalKonsultasi.SelectedDate.Value.ToShortDateString()}" & System.Environment.NewLine &
                                       $"Waktu: {jam:00}:{menit:00}"
         End If
     End Sub
@@ -106,10 +128,10 @@ Public Class MainWindow
     Private Function ValidasiInputKonsultasi() As Boolean
         Dim errors As String = ""
 
-        If String.IsNullOrWhiteSpace(txtNamaPasien.Text) Then errors += "- Nama Pasien harus diisi" & vbCrLf
-        If String.IsNullOrWhiteSpace(txtNoTelepon.Text) Then errors += "- Telepon harus diisi" & vbCrLf
-        If dpTanggalKonsultasi.SelectedDate Is Nothing Then errors += "- Pilih tanggal konsultasi" & vbCrLf
-        If cmbJenisKonsultasi.SelectedIndex = -1 Then errors += "- Pilih jenis konsultasi" & vbCrLf
+        If String.IsNullOrWhiteSpace(txtNamaPasien.Text) Then errors += "- Nama Pasien harus diisi" & System.Environment.NewLine
+        If String.IsNullOrWhiteSpace(txtNoTelepon.Text) Then errors += "- Telepon harus diisi" & System.Environment.NewLine
+        If dpTanggalKonsultasi.SelectedDate Is Nothing Then errors += "- Pilih tanggal konsultasi" & System.Environment.NewLine
+        If cmbJenisKonsultasi.SelectedIndex = -1 Then errors += "- Pilih jenis konsultasi" & System.Environment.NewLine
 
         If Not String.IsNullOrEmpty(errors) Then
             MessageBox.Show(errors, "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
