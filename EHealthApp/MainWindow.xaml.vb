@@ -212,4 +212,36 @@ Public Class MainWindow
 
         Return json
     End Function
+
+    'Private Sub txtBeratBadan_TextChanged(sender As Object, e As EventArgs) Handles txtBeratBadan.TextChanged
+
+    'End Sub
+
+    Private Sub txtUsia_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtUsia.TextChanged
+        ' Memeriksa apakah input hanya angka atau titik desimal
+        If Not IsNumeric(txtUsia.Text) AndAlso txtUsia.Text <> "" Then
+            MessageBox.Show("Masukkan angka!!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+        End If
+    End Sub
+
+    Private Sub txtBeratBadan_TextChanged_1(sender As Object, e As TextChangedEventArgs) Handles txtBeratBadan.TextChanged
+        ' Memeriksa apakah input hanya angka atau titik desimal
+        If Not IsNumeric(txtBeratBadan.Text) AndAlso txtBeratBadan.Text <> "" Then
+            MessageBox.Show("Masukkan angka!!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+        End If
+    End Sub
+
+    Private Sub txtTinggiBadan_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtTinggiBadan.TextChanged
+        ' Memeriksa apakah input hanya angka atau titik desimal
+        If Not IsNumeric(txtTinggiBadan.Text) AndAlso txtTinggiBadan.Text <> "" Then
+            MessageBox.Show("Masukkan angka!!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+        End If
+    End Sub
+
+    Private Sub txtBeratBadanAir_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtBeratBadanAir.TextChanged
+        ' Memeriksa apakah input hanya angka atau titik desimal
+        If Not IsNumeric(txtBeratBadanAir.Text) AndAlso txtBeratBadanAir.Text <> "" Then
+            MessageBox.Show("Masukkan angka!!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+        End If
+    End Sub
 End Class
