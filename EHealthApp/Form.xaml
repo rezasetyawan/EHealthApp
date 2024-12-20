@@ -1,0 +1,39 @@
+<Window x:Class="Form"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FitFat - Kalkulator Kalori Harian" Height="600" Width="800" Icon="/logo.png">
+    <Grid>
+        <StackPanel Margin="20">
+            <GroupBox Header="Hitung IMT">
+                <StackPanel>
+                    <TextBlock Text="Usia:" Margin="0,10" />
+                    <TextBox Name="txtAge" Width="200" Margin="0,5"  HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="Berat Badan (kg):" Margin="0,10" />
+                    <TextBox Name="txtWeight" Width="200" Margin="0,5"  HorizontalAlignment="Left"/>
+
+                    <TextBlock Text="Tinggi Badan (cm):" Margin="0,10" />
+                    <TextBox Name="txtHeight" Width="200" Margin="0,5"  HorizontalAlignment="Left" />
+
+                    <TextBlock Text="Jenis Kelamin:" Margin="0,10" />
+                    <ComboBox Name="cmbGender" Width="200" Margin="0,5"  HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Laki-laki"/>
+                        <ComboBoxItem Content="Perempuan"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Tingkat Aktivitas:" Margin="0,10"  HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Name="rbtnLow" Content="Rendah" Margin="0,5"/>
+                        <RadioButton Name="rbtnModerate" Content="Sedang" Margin="0,5"/>
+                        <RadioButton Name="rbtnHigh" Content="Tinggi" Margin="0,5"/>
+                    </StackPanel>
+
+                    <Button Name="btnCalculate" Content="Hitung Kalori" Width="200" Margin="0,15" Click="btnCalculate_Click"/>
+
+                    <TextBlock Name="lblResult" Margin="0,20" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>

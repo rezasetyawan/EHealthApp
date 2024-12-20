@@ -5,6 +5,12 @@ Imports System.Text
 Imports Newtonsoft.Json
 
 Public Class MainWindow
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
+
     ' ======= Konstanta dan Enum =======
     Private Const IMT_NORMAL_MIN As Double = 18.5
     Private Const IMT_NORMAL_MAX As Double = 24.9
@@ -62,13 +68,6 @@ Public Class MainWindow
                 {"type", "Hitung IMT"},
                 {"data", hasilIMT}
             }
-
-            ' Simpan ke file JSON
-            Dim filePath As String = "database.json"
-            Dim jsonOutput As String = ReadAndAppendJson(filePath, data)
-
-            ' Simpan ke file JSON
-            File.WriteAllText(filePath, jsonOutput, Encoding.UTF8)
 
             ' Tampilkan pesan berhasil
             MessageBox.Show("Data telah ditambahkan.", "Informasi", MessageBoxButton.OK, MessageBoxImage.Information)
@@ -242,5 +241,12 @@ Public Class MainWindow
         If Not IsNumeric(txtBeratBadanAir.Text) AndAlso txtBeratBadanAir.Text <> "" Then
             MessageBox.Show("Masukkan angka!!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
         End If
+    End Sub
+
+
+    Private Sub bukaFormHitungKalori(sender As Object, e As RoutedEventArgs)
+        ' Membuka form (Form)
+        Dim form As New Form()
+        form.ShowDialog() ' Menampilkan form sebagai modal
     End Sub
 End Class
