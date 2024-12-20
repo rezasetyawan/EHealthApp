@@ -76,8 +76,6 @@
 							<TextBlock Text="Berat Badan (kg):" Margin="0,5"/>
 							<TextBox x:Name="txtBeratBadanAir" Width="100" HorizontalAlignment="Left"/>
 
-							<TextBlock Text="Kebutuhan Air Putih Harian (L):" Margin="0,5" />
-
 							<TextBlock Text="Faktor Aktivitas:" Margin="0,5"/>
 							<ComboBox x:Name="cmbFaktorAktivitas" Width="200" SelectedIndex="0" HorizontalAlignment="Left">
 								<ComboBoxItem Content="Kurang Aktif" Tag="0.035"/>
@@ -85,6 +83,7 @@
 								<ComboBoxItem Content="Sangat Aktif" Tag="0.055"/>
 							</ComboBox>
 							
+							<TextBlock Text="Kebutuhan Air Putih Harian (ml):" Margin="0,5" />
 						</StackPanel>
 					</GroupBox>
 

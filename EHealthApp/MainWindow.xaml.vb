@@ -146,7 +146,7 @@ Public Class MainWindow
             Return
         End If
 
-        'Mendapatkan faktor aktifitas pasien dengan fakator aktifitas yang dipilih, untuk kurang aktif 35ml, aktif 45ml, dan sangat aktif 55ml
+        'Mendapatkan faktor aktivitas pasien dengan fakator aktivitas yang dipilih, untuk kurang aktif 35ml, aktif 45ml, dan sangat aktif 55ml
         Dim selectedItem As ComboBoxItem = CType(cmbFaktorAktivitas.SelectedItem, ComboBoxItem)
         Dim faktorAktivitas As Double = Double.Parse(selectedItem.Tag.ToString())
 
