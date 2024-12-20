@@ -8,7 +8,6 @@ Public Class MainWindow
     ' ======= Konstanta dan Enum =======
     Private Const IMT_NORMAL_MIN As Double = 18.5
     Private Const IMT_NORMAL_MAX As Double = 24.9
-    Private Const X_SATUAN_AIR As Double = 0.033
 
     Private Enum KategoriIMT
         KekuranganBeratBadan
