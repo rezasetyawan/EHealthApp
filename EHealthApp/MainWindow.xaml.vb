@@ -135,17 +135,29 @@ Public Class MainWindow
             Return
         End If
 
+        If cmbFaktorAktivitas.SelectedItem Is Nothing Then
+            MessageBox.Show("Harap pilih faktor aktivitas terlebih dahulu.")
+            Return
+        End If
+
         Dim beratBadan As Double
         If Not Double.TryParse(beratBadanInput, beratBadan) Then
             MessageBox.Show("Harap masukkan berat badan yang valid.")
             Return
         End If
 
-        ' Menghitung kebutuhan air putih (umumnya 30-35 ml per kg berat badan)
-        Dim kebutuhanAirPutih As Double = beratBadan * X_SATUAN_AIR ' 33 ml per kg berat badan
+        'Mendapatkan faktor aktifitas pasien dengan fakator aktifitas yang dipilih, untuk kurang aktif 35ml, aktif 45ml, dan sangat aktif 55ml
+        Dim selectedItem As ComboBoxItem = CType(cmbFaktorAktivitas.SelectedItem, ComboBoxItem)
+        Dim faktorAktivitas As Double = Double.Parse(selectedItem.Tag.ToString())
+
+        ' Menghitung kebutuhan air putih sesuai 
+        Dim kebutuhanAirPutih As Double = beratBadan * faktorAktivitas
+
+        ' Membulatkan hasil perhitungan ke atas
+        kebutuhanAirPutih = Math.Ceiling(kebutuhanAirPutih)
 
         ' Menampilkan hasil perhitungan di TextBlock
-        txtHasilAirPutih.Text = String.Format("Kebutuhan air putih harian untuk {0} adalah {1:F2} liter.", namaPasien, kebutuhanAirPutih)
+        txtHasilAirPutih.Text = String.Format("Kebutuhan air putih harian untuk {0} adalah {1} mililiter.", namaPasien, kebutuhanAirPutih)
 
         ' Data Air Putih
         Dim hasilAirPutih As New Dictionary(Of String, Object) From {
