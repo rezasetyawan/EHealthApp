@@ -211,10 +211,6 @@ Public Class MainWindow
         Return json
     End Function
 
-    'Private Sub txtBeratBadan_TextChanged(sender As Object, e As EventArgs) Handles txtBeratBadan.TextChanged
-
-    'End Sub
-
     Private Sub txtUsia_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtUsia.TextChanged
         ' Memeriksa apakah input hanya angka atau titik desimal
         If Not IsNumeric(txtUsia.Text) AndAlso txtUsia.Text <> "" Then
