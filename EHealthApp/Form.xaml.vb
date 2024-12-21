@@ -37,9 +37,9 @@ Class Form
             Dim gender As String = CType(cmbGender.SelectedItem, ComboBoxItem).Content.ToString()
 
             If gender = "Laki-laki" Then
-                bmr = (88.4 + (13.4 * weight)) + (4.8 * height) - (5.68 * age) ' Rumus untuk pria
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
             ElseIf gender = "Perempuan" Then
-                bmr = (447.6 + (9.25 * weight)) + (3.1 * height) - (4.33 * age) ' Rumus untuk wanita
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
             Else
                 MessageBox.Show("Jenis kelamin tidak valid.")
                 Return

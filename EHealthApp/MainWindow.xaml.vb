@@ -2,7 +2,6 @@
 Imports System.Windows.Controls
 Imports System.IO
 Imports System.Text
-Imports Newtonsoft.Json
 
 Public Class MainWindow
 
@@ -170,13 +169,6 @@ Public Class MainWindow
             {"data", hasilAirPutih}
         }
 
-        ' Simpan ke file JSON
-        Dim filePath As String = "database.json"
-        Dim jsonOutput As String = ReadAndAppendJson(filePath, data)
-
-        ' Simpan ke file JSON
-        File.WriteAllText(filePath, jsonOutput, Encoding.UTF8)
-
         ' Tampilkan pesan berhasil
         MessageBox.Show("Data telah ditambahkan.", "Informasi", MessageBoxButton.OK, MessageBoxImage.Information)
     End Sub
@@ -188,28 +180,6 @@ Public Class MainWindow
         txtHasilAirPutih.Text = String.Empty
 
     End Sub
-
-    ' Fungsi untuk membaca dan menambah data ke file JSON
-    Private Function ReadAndAppendJson(filePath As String, newData As Dictionary(Of String, Object)) As String
-        Dim json As String = ""
-        If File.Exists(filePath) Then
-            ' Membaca data JSON yang sudah ada
-            json = File.ReadAllText(filePath)
-            Dim jsonArray As List(Of Object) = JsonConvert.DeserializeObject(Of List(Of Object))(json)
-
-            ' Menambahkan data baru ke dalam array
-            jsonArray.Add(newData)
-
-            ' Mengonversi array menjadi JSON
-            json = JsonConvert.SerializeObject(jsonArray, Formatting.Indented)
-        Else
-            ' Membuat file baru jika belum ada
-            Dim jsonArray As New List(Of Object) From {newData}
-            json = JsonConvert.SerializeObject(jsonArray, Formatting.Indented)
-        End If
-
-        Return json
-    End Function
 
     'Private Sub txtBeratBadan_TextChanged(sender As Object, e As EventArgs) Handles txtBeratBadan.TextChanged
 
