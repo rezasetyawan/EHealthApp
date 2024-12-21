@@ -114,7 +114,7 @@ Public Class MainWindow
         If String.IsNullOrWhiteSpace(txtNama.Text) OrElse
                String.IsNullOrWhiteSpace(txtBeratBadan.Text) OrElse
                String.IsNullOrWhiteSpace(txtTinggiBadan.Text) Then
-            MessageBox.Show("Lengkapi semua data IMT!", "Peringatan", MessageBoxButton.OK, MessageBoxImage.Warning)
+            MessageBox.Show("Harap lengkapi semua kolom!", "Kesalahan", MessageBoxButton.OK, MessageBoxImage.Error)
             Return False
         End If
         Return True
@@ -128,18 +128,19 @@ Public Class MainWindow
 
         ' Validasi input berat badan dan nama pasien
         If String.IsNullOrWhiteSpace(namaPasien) OrElse String.IsNullOrWhiteSpace(beratBadanInput) Then
-            MessageBox.Show("Harap lengkapi semua kolom.")
+            MessageBox.Show("Harap lengkapi semua kolom!", "Kesalahan", MessageBoxButton.OK, MessageBoxImage.Error)
             Return
         End If
 
         If cmbFaktorAktivitas.SelectedItem Is Nothing Then
-            MessageBox.Show("Harap pilih faktor aktivitas terlebih dahulu.")
+            MessageBox.Show("Harap pilih faktor aktivitas terlebih dahulu!!", "Kesalahan", MessageBoxButton.OK, MessageBoxImage.Error)
+
             Return
         End If
 
         Dim beratBadan As Double
         If Not Double.TryParse(beratBadanInput, beratBadan) Then
-            MessageBox.Show("Harap masukkan berat badan yang valid.")
+            MessageBox.Show("Harap masukkan berat badan yang valid!", "Kesalahan", MessageBoxButton.OK, MessageBoxImage.Error)
             Return
         End If
 
@@ -180,10 +181,6 @@ Public Class MainWindow
         txtHasilAirPutih.Text = String.Empty
 
     End Sub
-
-    'Private Sub txtBeratBadan_TextChanged(sender As Object, e As EventArgs) Handles txtBeratBadan.TextChanged
-
-    'End Sub
 
     Private Sub txtUsia_TextChanged(sender As Object, e As TextChangedEventArgs) Handles txtUsia.TextChanged
         ' Memeriksa apakah input hanya angka atau titik desimal
