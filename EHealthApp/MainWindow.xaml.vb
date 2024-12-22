@@ -155,7 +155,7 @@ Public Class MainWindow
         kebutuhanAirPutih = Math.Ceiling(kebutuhanAirPutih)
 
         ' Menampilkan hasil perhitungan di TextBlock
-        txtHasilAirPutih.Text = String.Format("Kebutuhan air putih harian untuk {0} adalah {1} mililiter.", namaPasien, kebutuhanAirPutih)
+        txtHasilAirPutih.Text = String.Format("Kebutuhan air putih harian untuk {0} adalah {1} Liter.", namaPasien, kebutuhanAirPutih)
 
         ' Data Air Putih
         Dim hasilAirPutih As New Dictionary(Of String, Object) From {

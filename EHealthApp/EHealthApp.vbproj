@@ -5,6 +5,8 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>EHealthApp</RootNamespace>
     <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Production</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
